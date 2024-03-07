@@ -56,14 +56,15 @@ h1 {
   padding: 1rem;
   background: var(--secondary-color);
   transition: all 0.5s ease-in-out;
-  visibility: hidden;
-  opacity: 0;
+  visibility: hidden; /* To don't show the boxes unless they are in the viewport (main.js) */
+  opacity: 0; /* To don't show the boxes unless they are in the viewport (main.js) */
 }
 
 /* Right Side */
 #timeline ul li:nth-child(odd) div {
   left: 40px; /* To have a space between the time line and the box */
-  transform: translate(200px, 0);
+  /* To initially transform the box from left: 40px; to left: 240px; */
+  transform: translate(200px, 0); /* To have initially a greater space between the box and the time line - to have the effect the boxes come closer to the time line */
 }
 
 /* Left Side */
@@ -80,7 +81,7 @@ h1 {
   bottom: 0;  /* To have the dot at the bottom of each li */
   width: 25px;  /* The width of the rectangle (later transformed to a dot) */
   height: 25px; /* The height of the rectangle (later transformed to a dot) */
-  background: inherit;  /* To make the dot visible - From its parent (white) */
+  background: inherit;  /* To make the dot visible - From its parent (white) - just untill the dot is in the viewport (main.js) - afterwards it will change to var(--secondary-color) */
   transform: translateX(-50%);  /* To shift it back to the left */
   border-radius: 50%; /* To make it a dot */
   transition: background 0.5s ease-in-out;  /* To have a transition from white (#fff) to blue (var(--secondary-color)) */
@@ -110,15 +111,15 @@ h1 {
   border-color: transparent transparent transparent var(--secondary-color);
 }
 
-/* Show Boxes */
+/* Show Boxes - for all boxes which are in the viewport (main.js) */
 #timeline ul li.show div {
-  transform: none;
-  visibility: visible;
-  opacity: 1;
+  transform: none;  /* To get rid of transform: translate(200px, 0); when the box is in the viewport */
+  visibility: visible;  /* To show the boxes unless they are in the viewport (main.js) */
+  opacity: 1; /* To show the boxes unless they are in the viewport (main.js) */
 }
 
-#timeline ul li.show:after {
-  background: var(--secondary-color);
+#timeline ul li.show:after {  /* The dots */
+  background: var(--secondary-color); /* To change the color from initially white (#fff) to var(--secondary-color) */
 }
 
 
